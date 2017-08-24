@@ -70,9 +70,9 @@ The same general pattern is followed throughout the exercise.
 
 ### Data Builder
 
-In the test script, notice that line `on(Contact).use data_for "jeff nyman"`. This is a data builder.
+In the test script, notice that line `amazon_search_data = using_data_from "default item set"`. This is a data builder.
 
-What it does is take the data condition provided ("jeff nyman") and looks if it has that information in its data repository, which it does: [product_data.yml](https://github.com/jeffnyman/amazon_automate/blob/master/data/product_data.yml).
+What it does is take the data condition provided ("default item set") and looks if it has that information in its data repository, which it does: [product_data.yml](https://github.com/jeffnyman/amazon_automate/blob/master/data/product_data.yml).
 
 This is using my [DataBuilder](https://github.com/jeffnyman/data_builder) project, which can hook into a micro-framework. The data builder is actually a lot more sophisticated than I was able to show here with this kind of example.
 
