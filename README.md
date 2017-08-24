@@ -64,7 +64,7 @@ on(Amazon).check_cart_for(amazon_search_data)
 on(Cart).remove_item(amazon_search_data['item two'])
 ```
 
-Here `on_view` and `on` are context factories that take in a page class. Actions are called on those factories. Notice how this is meant to read somewhat like English. Take a look at the page class for [Uptake](https://github.com/jeffnyman/amazon_automate/blob/master/models/amazon.rb). Notice the `begin_with` method. This is called automatically by Tapestry. Notice the `page_ready` declaration. This can be called automatically to make sure that, in this case, a "Learn More" element is on the page. You can have multiple of these declarations.
+Here `on_view` and `on` are context factories that take in a page class. Actions are called on those factories. Notice how this is meant to read somewhat like English. Take a look at the page class for [Amazon](https://github.com/jeffnyman/amazon_automate/blob/master/models/amazon.rb). Notice the `begin_with` method. This is called automatically by Tapestry. Notice the `page_ready` declaration. This can be called automatically to make sure that, in this case, a "Learn More" element is on the page. You can have multiple of these declarations.
 
 The same general pattern is followed throughout the exercise.
 
