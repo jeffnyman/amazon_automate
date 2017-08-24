@@ -76,6 +76,31 @@ What it does is take the data condition provided ("jeff nyman") and looks if it 
 
 This is using my [DataBuilder](https://github.com/jeffnyman/data_builder) project, which can hook into a micro-framework. The data builder is actually a lot more sophisticated than I was able to show here with this kind of example.
 
+### Waiting and Wait States
+
+I have a sleep statement in `product.rb` (the page definition) that I'm not thrilled with. I did this because I have not yet figured out the best sensitivity to some aspects of how Amazon's site rejects the Mutation Observer. You can see I do checks for the DOM, like with this bit of code:
+
+```ruby
+if popover.present?
+  popover.wait_until do |a|
+    a.dom_updated?
+  end
+
+  no_coverage.click
+end
+```
+
+Likewise in `amazon.rb` I do this:
+
+```ruby
+def search_for_item(item)
+  search_text.wait_until(&:dom_updated?).set item
+  search.click
+end
+```
+
+These are library-agnostic calls to check if the DOM has been updated in any way.
+
 ### Performance (DOM and Otherwise)
 
 You will notice a commented out line in my script: `# analyze_from(Tapestry.browser.performance)`. That uses my [Test Performance](https://github.com/jeffnyman/test_performance) gem to get information about how the script itself is performing in a way that is compliant with the W3C Navigation standard that is also being utilized by WebDriver.
@@ -84,6 +109,7 @@ You will notice a commented out line in my script: `# analyze_from(Tapestry.brow
 
 There is a lot of debate about whether test scripts should hold assertions/expectations or whether those should be delegated to action methods in the page classes. Here you'll see I have mostly adopted the latter but I also do the former when it makes sense. The reason I focused on the latter here is because I wanted to showcase the page object pattern with the other patterns. And, as we know, pattern choice can often help us decided other logistics.
 
+For example, consider how in the `amazon_script` I do have assertions checking aspects of the test execution. But in `amazon.rb` I have expectations in the page definitions themselves.
 
 ### Wait! Aren't page objects out of date?
 
